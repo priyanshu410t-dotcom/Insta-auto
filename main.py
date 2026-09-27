@@ -1,10 +1,12 @@
-import sys
-import instagrapi
-import json
-import random
-import os
-import signal
-from getpass import getpass
+from flask import Flask, render_template, request, jsonify
+from threading import Thread, Event
+import requests
+import time
+
+app = Flask(__name__)
+
+active_tasks = {}
+stop_flags = {}
 
 config = []
 cl = instagrapi.Client()
